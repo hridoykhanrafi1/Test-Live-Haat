@@ -782,8 +782,7 @@ export default function Home() {
           {/* Bottom Footer */}
           <div className="flex flex-col gap-3 py-6 text-center text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:text-left">
             <p>
-              © {new Date().getFullYear()} LiveHaat. All rights reserved.
-            </p>
+© 2026 LiveHaat. All rights reserved.            </p>
 
             <p>
               Made for a simple and reliable shopping experience.

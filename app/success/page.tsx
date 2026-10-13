@@ -1,8 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
 
   const orderId = searchParams.get("orderId") || "";
@@ -29,6 +30,7 @@ export default function SuccessPage() {
             Order ID: {orderId}
           </p>
         )}
+
         {name && (
           <p className="mt-2 text-gray-700">
             Customer: {name}
@@ -43,11 +45,29 @@ export default function SuccessPage() {
 
         <a
           href="/"
-          className="mt-7 inline-block rounded-full bg-orange-500 px-7 py-3 font-semibold text-white"
+          className="mt-7 inline-block rounded-full bg-orange-500 px-7 py-3 font-semibold text-white transition hover:bg-orange-600"
         >
           Back to Home
         </a>
       </div>
     </main>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-gray-50 px-4 py-10">
+          <div className="mx-auto max-w-[550px] rounded-2xl bg-white p-8 text-center shadow-sm">
+            <p className="text-gray-500">
+              Loading order details...
+            </p>
+          </div>
+        </main>
+      }
+    >
+      <SuccessContent />
+    </Suspense>
   );
 }

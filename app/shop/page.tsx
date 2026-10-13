@@ -487,8 +487,7 @@ export default function ShopPage() {
                     </div>
 
                     <div className="py-6 text-center text-xs text-gray-500">
-                        © {new Date().getFullYear()} LiveHaat. All rights reserved.
-                    </div>
+© 2026 LiveHaat. All rights reserved.                    </div>
                 </div>
             </footer>
 

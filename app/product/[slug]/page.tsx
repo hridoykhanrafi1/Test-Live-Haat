@@ -1,15 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { use, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 import { supabase } from "../../../lib/supabase";
-export default function ProductPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = use(params);
+function ProductContent() {
+  const params = useParams();
+  const slug = params.slug as string;
 
 
   const [quantity, setQuantity] = useState(1);
@@ -469,6 +467,7 @@ if (loading) {
     </div>
   </div>
 </section>
+
       </main>
 
       {/* Toast */}
@@ -478,5 +477,20 @@ if (loading) {
         </div>
       )}
     </>
+  );
+}
+export default function ProductPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-white p-10">
+          <div className="mx-auto max-w-[1200px]">
+            Loading product...
+          </div>
+        </main>
+      }
+    >
+      <ProductContent />
+    </Suspense>
   );
 }
